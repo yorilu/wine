@@ -17,3 +17,294 @@ font-size: 100%;
 
 /*project*/
 
+/*common*/
+html,body{
+	width:100%;
+	height:100%;
+}
+
+.hidden{
+	display:none;
+}
+
+body {
+	min-width: 320px;
+	font: normal 14px/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei;
+	color: #000;
+	background: #FFF;
+	overflow-x: hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-text-size-adjust: none;
+	-moz-user-select: none;
+}
+bold,.bold{
+	font-weight:bold;
+}
+.page{
+	min-width:320px;
+	width:100%;
+}
+
+input.place-black::-webkit-input-placeholder{
+	color:#000;
+}
+
+.bro{
+	font-weight:bold;
+	color:#7d0918;
+}
+
+/*main-page*/
+.main-page-bg{
+	background:#f64b35;
+}
+
+.bg-page{
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.font-page{
+	width:100%;
+	height:100%;
+	position:absolute;
+	z-index:1;
+}
+
+.main-page .name{
+	margin-top: 61%;
+	text-align: center;
+	font-size:26px;
+}
+
+.main-page .btn{
+	width:70%;
+	margin:0 auto;
+	height:7%;
+	min-height:55px;
+	border-radius:30px;
+	text-align:center;
+}
+
+.main-page .btn.input{
+	margin-top:5%;
+	background-color:#FFF;
+}
+
+.main-page .btn.get{
+	margin-top:5%;
+	background-color:#CCC;
+}
+
+.main-page .input-btn{
+	border: none;
+	min-height:55px;
+	height:100%;
+	width:80%;
+	font-size: 25px;
+	text-align: center;
+	background-color:transparent;
+}
+
+.main-page .get .input-btn{
+	color:#FFF;
+	font-size:20px;
+}
+
+.main-page .btn.get{
+	text-align:center;
+	font-size:22px;
+	line-height:56px;
+	color:#FFF;
+}
+.main-page .btn.get.click-able{
+	background-color:#fe9001;
+}
+
+.progress-bar{
+	width:80%;
+	height:136px;
+	background-color:#940b1b;
+	border-radius:15px;
+	margin:25px auto 10px;
+	border:1px solid #f94e36;
+}
+
+.progress{
+	width:85%;
+	margin:15px auto 0;
+	display:block;
+	border:1px solid #af1d22;
+	height:15px;
+	border-radius:5px;
+}
+
+.progress .value{
+	display:block;
+	width:70%;
+	height:100%;
+	background-color:#fec201;
+	border-radius:5px;
+}
+
+.progress-bar .bottom{
+	width:85%;
+	text-align:right;
+	color:#FFF;
+	font-size:16px;
+	margin:10px auto 0;
+}
+
+.progress-bar .title{
+	font-size:24px;
+	color:#FFF;
+	text-align:center;
+	padding-top:16px;
+}
+
+.progress-bar.wine .title{
+	font-size:18px;
+	padding-top:8px;
+}
+
+.progress-bar.wine{
+	height:200px;
+}
+
+.progress-bar .wine{
+	display:inline-block;
+	margin-right:3px;
+	width:12px;
+	height:41px;
+	background-image:url('../pic/wine.png');
+}
+
+.progress-bar .wines{
+	margin-top: 10px;
+	text-align: center;
+	height: 40px;
+	overflow: hidden;
+}
+
+.info{
+	margin:8% auto 0;
+	padding:16px;
+	background-color:#f1ece6;
+	width:80%;
+	border-radius:15px;
+}
+
+.info .title{
+	font-weight:bold;
+	margin-bottom:10px;
+	font-size: 16px;
+	color:#000;
+	text-align:left;
+}
+.info{
+	color:#787471;
+}
+.info .list li{
+	list-style-type:disc;
+	margin-left: 18px;
+}
+
+.info .last{
+	margin-top:10px;
+	text-align:right;
+}
+
+/* share */
+.share-page-bg{
+	background-color:#fdedd4;
+}
+
+.share-page .content{
+	margin-top:62%;
+	text-align:center;
+}
+
+.share-page .money{
+	font-size:28px;
+	color:#F00;
+	font-weight:bold;
+}
+
+.share-page .line{
+	font-size:20px;
+	color:#6c6964;
+	font-weight:bold;
+}
+
+.share-page .my-code{
+	font-size:18px;
+	margin:15px 0;
+	color:#4d1704;
+	font-weight:bold;
+}
+
+.orange-btn {
+	background-color: #FE9001;
+	text-align: center;
+	font-size: 22px;
+	line-height: 56px;
+	color: #FFF;
+	width: 70%;
+	margin: 0 auto;
+	height: 7%;
+	min-height: 55px;
+	border-radius: 30px;
+	text-align: center;
+}
+
+.share-page .friend{
+	font-weight:bold;
+	color:#000;
+}
+
+.share-page .info{
+	background-color:#fef3e2;
+	border:1px solid #fde3bb;
+}
+
+.share-page .wallet-div{
+	text-align: center;
+	margin-top: 30%;
+	height: 20%;
+}
+.share-page bold{
+	color:#000;
+}
+/* award */
+.award-page{
+	
+}
+.award-page{
+	text-align:center;
+}
+.award-page .content{
+	margin-top:60%;
+}
+
+.award-page .money{
+	font-size:30px;
+	color:#F00;
+}
+
+.award-page .line{
+	font-size:18px;
+	color:#6c6964;
+}
+
+.award-page .orange-btn{
+	margin-top:30px; 
+}
+
+.award-page bold{
+	color:#000;
+}
+
+@media screen and (max-width: 600px) {	
+}
+
