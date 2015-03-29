@@ -244,7 +244,7 @@ input.place-black::-webkit-input-placeholder{
 	font-weight:bold;
 }
 
-.orange-btn {
+.common-btn {
 	background-color: #FE9001;
 	text-align: center;
 	font-size: 22px;
