@@ -1,7 +1,9 @@
 <?php
 include_once "database.php";
 
-$_POST("")
+$action = $_POST("action")
+
+
 
 function decode($str){
     if()
