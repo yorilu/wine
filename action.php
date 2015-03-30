@@ -6,6 +6,7 @@ include_once "keys.php";
 $action = $_POST["action"];
 $auth = $_POST["auth"];
 $name = $_POST["name"];
+$invCode = $_POST["invcode"];
 $err = array("rc"=>"1","msg"=>"sss");
 $BO = new BO();
 
@@ -18,9 +19,13 @@ if(empty($uid)){
 
 switch($action){
     case 'getInfo':
-    $data = $BO->getUserInfoByUid($uid);
-    suc_msg($data);
-    break;
+        $data = $BO->getUserInfoByUid($uid);
+        suc_msg($data);
+        break;
+    case 'getFirst':
+        $data = $BO->getFirst($uid,$invCode);
+        suc_msg($data);
+        break;
 }
 
 function suc_msg($data = "",$rmsg = ""){

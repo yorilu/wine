@@ -76,6 +76,7 @@ input.place-black::-webkit-input-placeholder{
 /*main-page*/
 .main-page-bg{
 	background:#f64b35;
+    height:820px;
 }
 
 .bg-page{
@@ -142,7 +143,7 @@ input.place-black::-webkit-input-placeholder{
 	height:136px;
 	background-color:#940b1b;
 	border-radius:15px;
-	margin:25px auto 10px;
+	margin:25px auto 25px;
 	border:1px solid #f94e36;
 }
 
@@ -161,6 +162,7 @@ input.place-black::-webkit-input-placeholder{
 	height:100%;
 	background-color:#fec201;
 	border-radius:5px;
+    max-width:100%;
 }
 
 .progress-bar .bottom{
@@ -233,6 +235,7 @@ input.place-black::-webkit-input-placeholder{
 /* share */
 .share-page-bg{
 	background-color:#fdedd4;
+    min-height: 620px;
 }
 
 .share-page .content{
@@ -294,6 +297,10 @@ input.place-black::-webkit-input-placeholder{
 /* award */
 .award-page{
 	
+}
+
+.award-page-bg{
+    background-color:#fdecd2;
 }
 .award-page{
 	text-align:center;

@@ -11,7 +11,9 @@
 
 </head>
 <body onselectstart="return false">
-	<div class="page">
+</body>
+<script type="text/template" id="tpl">
+<div class="page">
 		<div class="award-page-bg bg-page">
 			<img width="100%" src="pic/award.png">
 		</div>
@@ -20,18 +22,46 @@
 				<div class="money bold">集满120元</div>
 				<div class="line bold">恭喜！获得***起泡酒一瓶！</div>
 			</div>
-			<div class="common-btn">
+			<div class="J_Btn common-btn">
 				领取奖品
-			</div>
-			<div class="info">
-				<div class="title">温馨提示：</div>
-				<ul class="list">
-					<li>您的朋友<bold>忍者神龟</bold>也获得了10元现金券哦！快发给更多朋友帮助你获得礼品吧！</li>
-					<li>新朋友可以<bold>下载dr.wine</bold>点击应用内首图进入活动页面，输入邀请码<bold>立即领取50元现金券。</bold></li>
-				</ul>
-				<div class="last">*最终解释权归dr.wine所有。</div>
 			</div>
 		</div>
 	</div>
-</body>
+</script>
+
+<script src="js/zepto.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/wine.js"></script>
+<script>
+
+$(function (){
+    var data = wine.getInfo();
+    var template = $("#tpl").html();
+    var html = _.template(template);
+    $("body").html(html(data));
+    
+    $(".J_Btn").on('click', function (){
+        location.href="/wine/address.html";
+    })
+})
+
+/*
+$.ajax({
+    url:"http://localhost/wine/action.php",
+    type:"post",
+    data: {
+        action: "getInfo",
+        dataType: "json",
+        auth: auth,
+        name: name
+    },
+    success: function (info){
+        
+    },
+    error: function(){
+        debugger;
+    }
+})
+*/
+</script>
 </html>

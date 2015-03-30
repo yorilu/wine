@@ -16,39 +16,41 @@
 <script src="js/zepto.js"></script>
 <script src="js/wine.js"></script>
 <script>
-
-var max = 120;// 满120就可以获奖
-var url = "";
-var auth = $.getUrlParam("auth");
-var name = $.getUrlParam("name");
-$.ajax({
-    url:"http://localhost/wine/action.php",
-    type:"post",
-    data: {
-        action: "getInfo",
-        dataType: "json",
-        auth: auth,
-        name: name
-    },
-    success: function (info){
-        if(info.rc == 0){
-            var data = info.data[0];
-            localStorage['auth'] = auth;
-            localStorage['code'] = data.code;
-            localStorage['name'] = data.name;
-            localStorage['scroe'] = data.scroe;
-            localStorage['wine'] = data.wine;
-            var href = "";
-            if(data.scroe > max){
-                location.href = "/wine/award.html";
-            }else{
-                location.href = "/wine/main.html";
+$(function (){
+    var max = 120;// 满120就可以获奖
+    var url = "";
+    var auth = wine.getUrlParam("auth");
+    var name = wine.getUrlParam("name");
+    $.ajax({
+        url:"http://localhost/wine/action.php",
+        type:"post",
+        data: {
+            action: "getInfo",
+            dataType: "json",
+            auth: auth,
+            name: name
+        },
+        success: function (info){
+            if(info.rc == 0){
+                var data = info.data[0];
+                localStorage['auth'] = auth;
+                localStorage['code'] = data.code;
+                localStorage['name'] = data.name;
+                localStorage['score'] = data.score;
+                localStorage['wine'] = data.wine;
+                localStorage['max'] = max;
+                var href = "";
+                if(data.score >= max){
+                    location.href = "/wine/award.html";
+                }else{
+                    location.href = "/wine/main.html";
+                }
             }
+        },
+        error: function(){
+            debugger;
         }
-    },
-    error: function(){
-        debugger;
-    }
+    })
 })
 </script>
 </html>

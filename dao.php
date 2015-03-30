@@ -10,12 +10,12 @@ class DAO {
     }
     
     public function getUserInfoByUid($uid){
-        $list = $this->con->get_results("select code,name,scroe,wine from USER where uid='".$uid."'");
+        $list = $this->con->get_results("select code,name,score,wine from USER where uid='".$uid."'");
         return $list;
     }
-    
-    public function ifCodeExist($code) {
-        $list = $this->con->get_results("select 1 from USER where code='".$code."'");
+        
+    public function ifCodeExist($code, $uid) {
+        $list = $this->con->get_results("select 1 from USER where code='".$code."' and uid !='".$uid."'");
         if(!empty($list)){
             return true;
         }else{

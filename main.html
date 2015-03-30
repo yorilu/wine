@@ -14,47 +14,56 @@
 </body>
 <script type="text/template" id="tpl">
 <div class="page">
-		<div class="main-page-bg bg-page">
-			<img width="100%" src="pic/bg1.png">
-		</div>
-		<div class="main-page font-page">
-			<div class="name">
-				Panda lu!!!
-			</div>
-			<div class="btn input">
-				<input type="text" class="input-btn place-black" placeholder="邀请码输入">
-			</div>
-			<div class="btn get click-able">
-				领取50元现金券
-			</div>
-			<div class="progress-bar">
-				<div class="title">还差70元领取奖品</div>
-				<div class="progress">
-					<span class="value"></span>
-				</div>
-				<div class="bottom">50/120</div>
-			</div>
-			<div class="progress-bar wine">
-				<div class="wines"><span class="wine"></span></div>
-				<div class="title">已获得1支酒<br/>距离下一支酒还有120元</div>
-				<div class="progress">
-					<span class="value"></span>
-				</div>
-				<div class="bottom">50/120</div>
-			</div>
-			<div class="info">
-				<div class="title">活动规则：</div>
-				<ul class="list">
-					<li>输入邀请码即可激活现金券<span class="bro">50</span>元。</li>
-					<li>每邀请一位好友参与活动即可获赠现金券<span class="bro">10</span>元。</li>
-					<li>每成功累计<span class="bro">120</span>元现金券后，即可免费获取****起泡酒一瓶<br/>
-						活动日期截止至6月30日。
-					</li>
-				</ul>
-				<div class="last">*最终解释权归dr.wine所有。</div>
-			</div>
-		</div>
-	</div>
+    <div class="main-page-bg bg-page">
+        <img width="100%" src="pic/bg1.png">
+    </div>
+    <div class="main-page font-page">
+        <div class="name">
+            <%=name%>
+        </div>
+        <%if(score ==0 && wine == 0){%>
+            <div class="btn input">
+                <input type="text" class="input-btn place-black" placeholder="邀请码输入">
+            </div>
+            <div class="J_Get btn get click-able">
+                领取50元现金券
+            </div>
+        <%}%>
+        <%if(wine == 0 && score!=0){%>
+        <div class="progress-bar">
+            <div class="title">还差<%=max-score%>元领取奖品</div>
+            <div class="progress">
+                <span class="value" style="width:<%=score/max*100%>%"></span>
+            </div>
+            <div class="bottom"><%=score%>/<%=max%></div>
+        </div>
+        <%}%>
+        <%if(wine >0){%>
+            <div class="progress-bar wine">
+                <div class="wines"><span class="wine"></span></div>
+                <div class="title">已获得1支酒<br/>距离下一支酒还有120元</div>
+                <div class="progress">
+                    <span class="value" style="width:10%"></span>
+                </div>
+                <div class="bottom">50/120</div>
+            </div>
+        <%}%>
+        <%if(score !=0 || wine != 0){%>
+        <div class="common-btn orange">分享给好友</div>
+        <%}%>
+        <div class="info">
+            <div class="title">活动规则：</div>
+            <ul class="list">
+                <li>输入邀请码即可激活现金券<span class="bro">50</span>元。</li>
+                <li>每邀请一位好友参与活动即可获赠现金券<span class="bro">10</span>元。</li>
+                <li>每成功累计<span class="bro">120</span>元现金券后，即可免费获取****起泡酒一瓶<br/>
+                    活动日期截止至6月30日。
+                </li>
+            </ul>
+            <div class="last">*最终解释权归dr.wine所有。</div>
+        </div>
+    </div>
+</div>
 </script>
 
 <script src="js/zepto.js"></script>
@@ -65,8 +74,12 @@
 $(function (){
     var data = wine.getInfo();
     var template = $("#tpl").html();
-    var html = _.template({},template);
-    $("body").html(html);
+    var html = _.template(template);
+    $("body").html(html(data));
+    
+    $(".J_Get").on('click', function (){
+        location.href="/wine/share.html";
+    })
 })
 
 /*

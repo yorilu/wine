@@ -27,6 +27,10 @@ class BO {
         return null;
     }
     
+    public function getFirst($code, $uid) {
+       $code = $this->ifCodeExist($code, $uid);
+    }
+    
     private function getRandomSix(){
         $randStr = str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890');
         $code = substr($randStr,0,6);

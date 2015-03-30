@@ -35,9 +35,39 @@
 				<div class="line">
 					<span class="label-like">联系电话：</span><input type="text" class="input">
 				</div>
-				<div class="common-btn browen">领取奖品</div>
+				<div class="J_Btn common-btn browen">领取奖品</div>
 			</div>
 		</div>
 	</div>
 </body>
+<script src="js/zepto.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/wine.js"></script>
+<script>
+
+$(function (){
+    $(".J_Btn").on('click', function (){
+        alert("领取奖品")
+    })
+})
+
+/*
+$.ajax({
+    url:"http://localhost/wine/action.php",
+    type:"post",
+    data: {
+        action: "getInfo",
+        dataType: "json",
+        auth: auth,
+        name: name
+    },
+    success: function (info){
+        
+    },
+    error: function(){
+        debugger;
+    }
+})
+*/
+</script>
 </html>
