@@ -36,14 +36,3 @@ class Security {
         return $decrypted;
     }
 }
-// 加密
-/*
-$key = "GhGjLoUmN1B2B3V1H3R1U3I3";
-$string = Security::encrypt("drwine000088888888",$key);;
-echo($string);
-echo('<br/>');
-// 解密
-$str = Security::decrypt("KXCYiQO6EjWHAxs1gAME8fo6FUp10D8KFmlxEibT2eQ=",$key);
-echo($str);
-?>
-*/

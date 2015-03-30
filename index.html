@@ -13,19 +13,42 @@
 <body onselectstart="return false">
 	
 </body>
-<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/zepto.js"></script>
+<script src="js/wine.js"></script>
 <script>
-(function($){
-$.getUrlParam
- = function(name)
-{
-var reg
- = new RegExp("(^|&)"+
- name +"=([^&]*)(&|$)");
-var r
- = window.location.search.substr(1).match(reg);
-if (r!=null) return unescape(r[2]); return null;
-}
-})(jQuery);
+
+var max = 120;// 满120就可以获奖
+var url = "";
+var auth = $.getUrlParam("auth");
+var name = $.getUrlParam("name");
+$.ajax({
+    url:"http://localhost/wine/action.php",
+    type:"post",
+    data: {
+        action: "getInfo",
+        dataType: "json",
+        auth: auth,
+        name: name
+    },
+    success: function (info){
+        if(info.rc == 0){
+            var data = info.data[0];
+            localStorage['auth'] = auth;
+            localStorage['code'] = data.code;
+            localStorage['name'] = data.name;
+            localStorage['scroe'] = data.scroe;
+            localStorage['wine'] = data.wine;
+            var href = "";
+            if(data.scroe > max){
+                location.href = "/wine/award.html";
+            }else{
+                location.href = "/wine/main.html";
+            }
+        }
+    },
+    error: function(){
+        debugger;
+    }
+})
 </script>
 </html>
