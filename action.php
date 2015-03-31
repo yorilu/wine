@@ -11,20 +11,31 @@ $err = array("rc"=>"1","msg"=>"sss");
 $BO = new BO();
 
 header('Content-Type: application/json');
+
 $uid = getUidFormAuth($auth,$PRIVATE_KEYS);
 if(empty($uid)){
-    error_msg();
+    error_msg("auth error");
     return;
 }
 
 switch($action){
     case 'getInfo':
-        $data = $BO->getUserInfoByUid($uid);
-        suc_msg($data);
+        $ret = $BO->getUserInfoByUid($uid,$name);
+		if(!empty($ret)){
+			suc_msg($ret);
+		}else{
+			error_msg("该用户无效！");
+		}
+        
         break;
     case 'getFirst':
-        $data = $BO->getFirst($uid,$invCode);
-        suc_msg($data);
+        $ret = $BO->getFirst($invCode,$uid);
+		if(!empty($ret)){
+			suc_msg($ret);
+		}else{
+			error_msg("领取失败！");
+		};
+        
         break;
 }
 

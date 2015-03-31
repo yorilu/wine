@@ -11,6 +11,9 @@
 
 </head>
 <body onselectstart="return false">
+</body>
+
+<script type="text/template" id="tpl">
 	<div class="page">
 		<div class="share-page-bg bg-page">
 			<img width="100%" src="pic/share.png">
@@ -20,7 +23,7 @@
 				<div class="money">50元</div>
 				<div class="line">恭喜！获得50元现金券！</div>
 				<div class="line">还差<span class="bro">70</span>元就可以领取奖品啦！</div>
-				<div class="my-code">我的邀请码：9u36td</div>
+				<div class="my-code">我的邀请码：<%=code%></div>
 			</div>
 			<div class="common-btn">
 				分享给好友
@@ -28,11 +31,24 @@
 			<div class="info">
 				<div class="title">温馨提示：</div>
 				<ul class="list">
-					<li>您的朋友<bold>忍者神龟</bold>也获得了10元现金券哦！快发给更多朋友帮助你获得礼品吧！</li>
+					<li>您的朋友<bold><%=fname%></bold>也获得了10元现金券哦！快发给更多朋友帮助你获得礼品吧！</li>
 				</ul>
 				<div class="last">*最终解释权归dr.wine所有。</div>
 			</div>
 		</div>
 	</div>
-</body>
+</script>
+<script src="js/zepto.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/wine.js"></script>
+<script>
+
+$(function (){
+    var data = wine.getInfo();
+    var template = $("#tpl").html();
+    var html = _.template(template);
+    $("body").html(html(data));
+	
+})
+</script>
 </html>

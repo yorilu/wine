@@ -32,7 +32,7 @@ $(function (){
         },
         success: function (info){
             if(info.rc == 0){
-                var data = info.data[0];
+                var data = info.data;
                 localStorage['auth'] = auth;
                 localStorage['code'] = data.code;
                 localStorage['name'] = data.name;
@@ -47,7 +47,7 @@ $(function (){
                 }
             }
         },
-        error: function(){
+        error: function(info){
             debugger;
         }
     })
