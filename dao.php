@@ -58,5 +58,9 @@ class DAO {
             return false;
         }
     }
+    
+    public function close(){
+        $this->con->disconnect();
+    }
 
 }

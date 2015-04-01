@@ -13,7 +13,7 @@ $contact = $_POST["contact"];
 $phone = $_POST["phone"];
 
 
-$BO = new BO();
+
 
 header('Content-Type: application/json');
 
@@ -22,6 +22,12 @@ if(empty($uid)){
     error_msg("auth error");
     return;
 }
+
+//加密
+//$a  = Security::encrypt("drwine000088889999","dsaddLOhkiHKhkHkhkhkdhsO");
+//echo($a);
+
+$BO = new BO();
 
 switch($action){
     case 'getInfo':
@@ -51,6 +57,9 @@ switch($action){
 		};
         break;
 }
+
+$BO->close();
+
 
 function suc_msg($data = "",$rmsg = ""){
     $arr = [

@@ -12,6 +12,7 @@
 </head>
 <body onselectstart="return false">
 </body>
+
 <script type="text/template" id="tpl">
 <div class="page">
     <div class="main-page-bg <%if(typeof friend != "undefined"){%>friend-page<%}%> bg-page">
@@ -26,7 +27,7 @@
         <%}%>
         <%if(score ==0 && wine == 0){%>
             <div class="btn input">
-                <input type="text" class="J_InvCode input-btn place-black" placeholder="邀请码输入">
+                <input type="text" class="J_InvCode input-btn place-black" maxlength="6" placeholder="邀请码输入">
             </div>
             <div class="J_Get btn get click-able">
                 领取50元现金券
@@ -94,7 +95,9 @@ $(function (){
     var auth = wine.getUrlParam("auth");
     var name = wine.getUrlParam("name");
     
-    var auth = localStorage["auth"];
+    localStorage['auth'] = auth;
+    
+    var that = this;
     $.ajax({
         url:wine.url,
         type:"post",
@@ -130,6 +133,7 @@ $(function (){
                     var template = $("#tpl").html();
                     var html = _.template(template);
                     $("body").html(html(data));
+                    bind.call(that);
                 }
             }
         },
@@ -137,39 +141,40 @@ $(function (){
             debugger;
         }
     });
-    
-    $(".J_Get").on('click', function (){
-		var $inv = $(".J_InvCode");
-		var auth = localStorage['auth'];
-		var invCode = $inv.val();
-		
-		if($inv.val().length!=6){
-			alert("请输入6位邀请码！");
-		}else{
-			$.ajax({
-				url:wine.url,
-				type:"post",
-				data: {
-					action: "getFirst",
-					dataType: "json",
-					auth: auth,
-					invcode: invCode
-				},
-				success: function (info){
-					if(info.rc == 0){
-						location.href="/wine/share.html";
-						localStorage["score"] = 50;
-						localStorage["fname"] = info.data.fname;
-					}else{
-						alert(info.rc);
-					}
-				},
-				error: function(info){
-					debugger;
-				}
-			})
-		}
-    })
+    var bind = function (){
+        $(".J_Get").on('click', function (){
+            var $inv = $(".J_InvCode");
+            var auth = localStorage['auth'];
+            var invCode = $inv.val();
+            
+            if($inv.val().length!=6){
+                alert("请输入6位邀请码！");
+            }else{
+                $.ajax({
+                    url:wine.url,
+                    type:"post",
+                    data: {
+                        action: "getFirst",
+                        dataType: "json",
+                        auth: auth,
+                        invcode: invCode
+                    },
+                    success: function (info){
+                        if(info.rc == 0){
+                            location.href="/wine/share.html";
+                            localStorage["score"] = 50;
+                            localStorage["fname"] = info.data.fname;
+                        }else{
+                            alert(info.rmsg);
+                        }
+                    },
+                    error: function(info){
+                        debugger;
+                    }
+                })
+            }
+        })
+    }
 })
 </script>
 </html>

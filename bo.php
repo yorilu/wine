@@ -28,6 +28,10 @@ class BO {
         
     }
     
+    public function close(){
+        $this->dao->close();
+    }
+    
     public function getUserInfoByUid($uid,$name){
         $ret = $this->dao->getUserInfoByUid($uid);
 		if(empty($ret)){
