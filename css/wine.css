@@ -101,6 +101,10 @@ input.place-black::-webkit-input-placeholder{
 	z-index:1;
 }
 
+.main-page-bg.friend-page{
+    min-height:1000px;
+}
+
 .main-page .name{
 	margin-top: 61%;
 	text-align: center;
@@ -158,6 +162,19 @@ input.place-black::-webkit-input-placeholder{
 
 .main-page .my-code .code{
 	color:#FEC201;
+}
+
+.main-page .friend-title{
+    margin-top:10px;
+}
+
+.main-page .friend-list{
+    max-height:105px;
+    overflow-y:scroll;
+}
+
+.main-page .add-ten{
+    float:right;
 }
 
 .progress-bar{

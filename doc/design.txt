@@ -3,7 +3,7 @@ API£º
 ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
 getInfo »ñÈ¡userÐÅÏ¢
 getFirst »ñÈ¡µÚÒ»´Î50¿é£¬ ¶Ô·½¼Ó10¿é
-getWine
+getAward »ñÈ¡½±Æ·
 
 
 
@@ -23,16 +23,20 @@ CREATE TABLE IF NOT EXISTS user (
 
 CREATE TABLE IF NOT EXISTS friend (
  id int(8) NOT NULL,
- fid VARCHAR(20) NOT NULL 
+ fid int(8) NOT NULL 
 );
 
 CREATE TABLE IF NOT EXISTS address (
  id int(8) NOT NULL PRIMARY KEY,
  address VARCHAR(80),
- cantact VARCHAR(20),
+ contact VARCHAR(40),
  phone VARCHAR(20)
 );
 ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
 insert into user values(0,'drwine000088889999','94d6eq','ºÇºÇa',0,0);
 insert into user values(0,'drwine000099999999','ds65de','ºÇºÇb',0,0);
-insert into user values(0,'drwine000088888888','d1g1gw','ºÇºÇc',0,0);
+insert into user values(0,'drwine000011112222','d1g1gw','ºÇºÇc',0,0);
+
+insert into friend values(0,0);
+
+SELECT user.name FROM friend left join user on friend.fid = user.id where friend.id = 2

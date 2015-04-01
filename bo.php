@@ -7,6 +7,27 @@ class BO {
         $this->dao = new DAO();
     }
     
+    public function getAward($uid,$address,$contact,$phone){
+        $userInfo = $this->dao->getUserInfoByUid($uid);
+        if(!empty($userInfo)){
+            $userInfo = $this->object_array($userInfo);
+            $score = (int)$userInfo["score"];
+            $wine = (int)$userInfo["wine"];
+            $id = (int)$userInfo["id"];
+            if($score>=120){
+                $this->dao->updateScore($uid,0);
+                $this->dao->updateWine($uid,$wine+1);
+                $this->dao->addAddress($id,$address,$contact,$phone);
+                return true;
+            }            
+   
+            return false;
+        }else{
+            return false;
+        }
+        
+    }
+    
     public function getUserInfoByUid($uid,$name){
         $ret = $this->dao->getUserInfoByUid($uid);
 		if(empty($ret)){
@@ -18,7 +39,15 @@ class BO {
 			}else{
 				$ret = false;
 			}
-		};
+		}else{
+            $ret = $this->object_array($ret);
+            $id = $ret["id"];
+            $friend = $this->dao->getFriendById($id);
+            if(!empty($friend)){
+                $friend = $this->object_array($friend);
+                $ret["friend"] = $friend;
+            }
+        };
         return $ret;
     }
 	
@@ -38,6 +67,7 @@ class BO {
 		   $this->dao->updateScore($uid,50);
 		   $score = (int)$otherUser["score"];
 		   $this->dao->updateScore($otherUser["uid"],$score+10);
+           $this->dao->addFriend($otherUser["id"],$userInfo["id"]);
 		   $ret = [
 		       "fname"=>$otherUser["name"],
 			   "code"=>$userInfo["code"]

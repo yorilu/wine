@@ -7,7 +7,12 @@ $action = $_POST["action"];
 $auth = $_POST["auth"];
 $name = $_POST["name"];
 $invCode = $_POST["invcode"];
-$err = array("rc"=>"1","msg"=>"sss");
+
+$address = $_POST["address"];
+$contact = $_POST["contact"];
+$phone = $_POST["phone"];
+
+
 $BO = new BO();
 
 header('Content-Type: application/json');
@@ -36,6 +41,14 @@ switch($action){
 			error_msg("领取失败！");
 		};
         
+        break;
+     case 'getAward':
+        $ret = $BO->getAward($uid,$address,$contact,$phone);
+        if(!empty($ret)){
+			suc_msg($ret);
+		}else{
+			error_msg("领取奖品失败！");
+		};
         break;
 }
 

@@ -27,13 +27,13 @@
 			</div>
 			<div class="content">
 				<div class="line first">
-					<span class="label-like">地址：</span><input type="text" class="input">
+					<span class="label-like">地址：</span><input type="text" class="input J_Address" max-length="40">
 				</div>
 				<div class="line">
-					<span class="label-like">联系人：</span><input type="text" class="input">
+					<span class="label-like">联系人：</span><input type="text" class="input J_Contact" max-length="20">
 				</div>
 				<div class="line">
-					<span class="label-like">联系电话：</span><input type="text" class="input">
+					<span class="label-like">联系电话：</span><input type="tel" class="input J_Phone" max-length="20">
 				</div>
 				<div class="J_Btn common-btn browen">领取奖品</div>
 			</div>
@@ -47,27 +47,50 @@
 
 $(function (){
     $(".J_Btn").on('click', function (){
-        alert("领取奖品")
+        var $address = $(".J_Address");
+        var $contact = $(".J_Contact");
+        var $phone = $(".J_Phone");
+        var auth = localStorage['auth'];
+        if($address.val() == ""){
+            alert("请输入联系地址");
+            return;
+        }
+        if($contact.val() == ""){
+            alert("请输入联系人");
+            return;
+        }
+        if($phone.val() == ""){
+            alert("请输入联系电话");
+            return;
+        }
+
+        $.ajax({
+            url:wine.url,
+            type:"post",
+            data: {
+                action: "getAward",
+                dataType: "json",
+                address: $address.val(),
+                contact: $contact.val(),
+                phone: $phone.val(),
+                auth: auth 
+            },
+            success: function (info){
+                if(info.rc == 0){
+                    localStorage["score"]=0;
+                    localStorage["wine"]= parseInt(localStorage["wine"]) + 1;
+                    alert("领取成功！dr.wine小助手将尽快联系您！");
+                }else{
+                    alert(info.rmsg);
+                }
+            },
+            error: function(info){
+                debugger;
+            }
+        })
     })
 })
 
-/*
-$.ajax({
-    url:"http://localhost/wine/action.php",
-    type:"post",
-    data: {
-        action: "getInfo",
-        dataType: "json",
-        auth: auth,
-        name: name
-    },
-    success: function (info){
-        
-    },
-    error: function(){
-        debugger;
-    }
-})
-*/
+
 </script>
 </html>

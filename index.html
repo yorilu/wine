@@ -11,18 +11,92 @@
 
 </head>
 <body onselectstart="return false">
-	
 </body>
+<script type="text/template" id="tpl">
+<div class="page">
+    <div class="main-page-bg <%if(typeof friend != "undefined"){%>friend-page<%}%> bg-page">
+        <img width="100%" src="pic/bg1.png">
+    </div>
+    <div class="main-page font-page">
+        <div class="name">
+            <%=name%>
+        </div>
+		<%if(score !=0 || wine != 0){%>
+			<div class="my-code">我的邀请码：<span class="code"><%=code%></span></div>
+        <%}%>
+        <%if(score ==0 && wine == 0){%>
+            <div class="btn input">
+                <input type="text" class="J_InvCode input-btn place-black" placeholder="邀请码输入">
+            </div>
+            <div class="J_Get btn get click-able">
+                领取50元现金券
+            </div>
+        <%}%>
+        <%if(wine == 0 && score!=0){%>
+        <div class="progress-bar">
+            <div class="title">还差<%=max-score%>元领取奖品</div>
+            <div class="progress">
+                <span class="value" style="width:<%=score/max*100%>%"></span>
+            </div>
+            <div class="bottom"><%=score%>/<%=max%></div>
+        </div>
+        <%}%>
+        <%if(wine >0){%>
+            <div class="progress-bar wine">
+                <div class="wines">
+                    <%for(var i=0;i<wine;i++){%>
+                        <span class="wine">
+                    <%}%>
+                </span></div>
+                <div class="title">已获得<%=wine%>支酒<br/>距离下一支酒还有<%=max-score%>元</div>
+                <div class="progress">
+                    <span class="value" style="width:<%=score/max*100%>%"></span>
+                </div>
+                <div class="bottom"><%=score%>/<%=max%></div>
+            </div>
+        <%}%>
+        <%if(score !=0 || wine != 0){%>
+        <div class="common-btn orange">分享给好友</div>
+        <%}%>
+        <div class="info">
+            <div class="title">活动规则：</div>
+            <ul class="list">
+                <li>输入邀请码即可激活现金券<span class="bro">50</span>元。</li>
+                <li>每邀请一位好友参与活动即可获赠现金券<span class="bro">10</span>元。</li>
+                <li>每成功累计<span class="bro">120</span>元现金券后，即可免费获取****起泡酒一瓶<br/>
+                    活动日期截止至6月30日。
+                </li>
+            </ul>
+            <%if(typeof friend != "undefined"){%>
+                <div class="title friend-title">邀请成功的好友：</div>
+                <ul class="friend-list">
+                    <%
+                    var friends = friend.split(",");
+                    for(var i =0;i<friends.length;i++){%>
+                        <li>NO.<%=i+1%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=friends[i]%> <span class="add-ten bold">+10元</span></li>
+                    <%}%>
+                </ul>
+            <%}%>
+            <div class="last">*最终解释权归dr.wine所有。</div>
+        </div>
+    </div>
+</div>
+</script>
+
 <script src="js/zepto.js"></script>
+<script src="js/underscore.js"></script>
 <script src="js/wine.js"></script>
 <script>
+
 $(function (){
     var max = 120;// 满120就可以获奖
     var url = "";
     var auth = wine.getUrlParam("auth");
     var name = wine.getUrlParam("name");
+    
+    var auth = localStorage["auth"];
     $.ajax({
-        url:"http://localhost/wine/action.php",
+        url:wine.url,
         type:"post",
         data: {
             action: "getInfo",
@@ -33,23 +107,68 @@ $(function (){
         success: function (info){
             if(info.rc == 0){
                 var data = info.data;
-                localStorage['auth'] = auth;
                 localStorage['code'] = data.code;
                 localStorage['name'] = data.name;
                 localStorage['score'] = data.score;
                 localStorage['wine'] = data.wine;
                 localStorage['max'] = max;
-                var href = "";
+
+                if(data.friend){
+                    var f= "";
+                    for(var i=0;i<data.friend.length;i++){
+                        f+=data.friend[i].name + ",";
+                    }
+                    
+                    f = f.substring(0,f.length-1);
+                    localStorage["friend"] = f;
+                }
+                
                 if(data.score >= max){
                     location.href = "/wine/award.html";
                 }else{
-                    location.href = "/wine/main.html";
+                    var data = wine.getInfo();
+                    var template = $("#tpl").html();
+                    var html = _.template(template);
+                    $("body").html(html(data));
                 }
             }
         },
         error: function(info){
             debugger;
         }
+    });
+    
+    $(".J_Get").on('click', function (){
+		var $inv = $(".J_InvCode");
+		var auth = localStorage['auth'];
+		var invCode = $inv.val();
+		
+		if($inv.val().length!=6){
+			alert("请输入6位邀请码！");
+		}else{
+			$.ajax({
+				url:wine.url,
+				type:"post",
+				data: {
+					action: "getFirst",
+					dataType: "json",
+					auth: auth,
+					invcode: invCode
+				},
+				success: function (info){
+					if(info.rc == 0){
+						location.href="/wine/share.html";
+						localStorage["score"] = 50;
+						localStorage["fname"] = info.data.fname;
+					}else{
+						alert(info.rc);
+					}
+				},
+				error: function(info){
+					debugger;
+				}
+			})
+		}
     })
 })
 </script>
