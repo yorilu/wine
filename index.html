@@ -29,7 +29,7 @@
             <div class="btn input">
                 <input type="text" class="J_InvCode input-btn place-black" maxlength="6" placeholder="邀请码输入">
             </div>
-            <div class="J_Get btn get click-able">
+            <div class="J_Get btn get">
                 领取50元现金券
             </div>
         <%}%>
@@ -141,11 +141,20 @@ $(function (){
             }
         },
         error: function(info){
-            debugger;
+                alert(info["response"]);
         }
     });
     var bind = function (){
-        $(".J_Get").on('click', function (){
+        var $getbtn = $(".J_Get");
+        var $intBtn = $(".J_InvCode");
+        $intBtn.on('keyup', function (){
+            if($intBtn.val().length ==6){
+                $getbtn.addClass("click-able");
+            }else{
+                 $getbtn.removeClass("click-able");
+            }
+        });
+        $getbtn.on('click', function (){
             var $inv = $(".J_InvCode");
             var auth = localStorage['auth'];
             var invCode = $inv.val();
@@ -179,5 +188,9 @@ $(function (){
         })
     }
 })
+
+window.onerror = function (e){
+    alert(e);
+}
 </script>
 </html>

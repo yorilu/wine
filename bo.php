@@ -40,6 +40,7 @@ class BO {
 			$flag = $this->dao->insertUserInfo($uid,$code,$name);
 			if($flag){
 				$ret = $this->dao->getUserInfoByUid($uid);
+                $ret = $this->object_array($ret);
 			}else{
 				$ret = false;
 			}
@@ -52,8 +53,9 @@ class BO {
                 $ret["friend"] = $friend;
             }
         };
-        
-        unset($ret["id"]);
+        if(!empty($ret)){
+            unset($ret["id"]);
+        }
         return $ret;
     }
 	

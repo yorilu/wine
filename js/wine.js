@@ -1,3 +1,7 @@
+var SERVER_IP = "172.16.150.128";
+var DOWNLOAD_URL = "http://download.com";
+var ACTION_URL = "http://"+SERVER_IP+"/wine/action.php";
+
 $(function (){
     var dialog ='<div class="dialog J_Dialog hidden">'+
                     '<div class="d-title"><bold class="J_t"></bold></div>'+
@@ -6,7 +10,9 @@ $(function (){
                 '</div>"';
             
     var wine = window.wine = {
-        url: "http://localhost/wine/action.php",
+        url: ACTION_URL,
+        downloadUrl:DOWNLOAD_URL,
+        serverIp: SERVER_IP,
         getUrlParam: function (name){ 
             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 
             var r = window.location.search.substr(1).match(reg); 
@@ -24,6 +30,9 @@ $(function (){
             if(!$(".J_Mask")[0]){
                 $("body").append("<div class='mask J_Mask'></div>");
             }
+            $(".J_Mask").css({
+                height:$("body")[0].scrollHeight
+            })
             
             $(".J_Mask").show();
         },

@@ -16,7 +16,7 @@
 
 <script type="text/template" id="tpl">
 <div class="page">
-    <div class="share-page-bg bg-page">
+    <div class="redbag-page-bg bg-page">
         <img width="100%" src="pic/redbag.png">
     </div>
     <div class="font-page redbag-page">
@@ -25,11 +25,12 @@
         <ul class="list">
             <li>领取方式：</li>
             <li>进入dr.wine 首页顶部活动专区，输入“<%=name%>”的邀请码领取。</li>
-            <li>同时“牛魔王爱红酒美女”也将获取10元现金券奖励！</li>
+            <li>同时“<%=name%>”也将获取10元现金券奖励！</li>
         </ul>
         <div class="my-code bold">邀请码：<%=code%></div>
-        <div class="common-btn red">进入dr.wine领取</div>
+        <div class="common-btn red"><a href="<%=url%>">进入dr.wine领取</a></div>
         <div class="last">*最终解释权归dr.wine所有。</div>
+        <div class="bottom"><img width="100%" height="100%"  src="pic/bottom.png"></img></div>
     </div>
 </div>
 </script>
@@ -42,7 +43,8 @@ $(function (){
     var name = decodeURIComponent(wine.getUrlParam("name")) || "";
     var data = {
         code:code,
-        name:name
+        name:name,
+        url:wine.downloadUrl
     }
     ;
     var template = $("#tpl").html();
