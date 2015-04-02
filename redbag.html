@@ -11,22 +11,43 @@
 
 </head>
 <body onselectstart="return false">
-	<div class="page">
-		<div class="share-page-bg bg-page">
-			<img width="100%" src="pic/redbag.png">
-		</div>
-		<div class="font-page redbag-page">
-			<div class="title bold">“牛魔王爱红酒美女”</div>
-			<div class="money bold">50元</div>
-			<ul class="list">
-				<li>领取方式：</li>
-				<li>进入dr.wine 首页顶部活动专区，输入“牛魔王爱红酒美女”的邀请码领取。</li>
-				<li>同时“牛魔王爱红酒美女”也将获取10元现金券奖励！</li>
-			</ul>
-			<div class="my-code bold">邀请码：u8wt3a</div>
-			<div class="common-btn red">进入dr.wine领取</div>
-			<div class="last">*最终解释权归dr.wine所有。</div>
-		</div>
-	</div>
+	
 </body>
+
+<script type="text/template" id="tpl">
+<div class="page">
+    <div class="share-page-bg bg-page">
+        <img width="100%" src="pic/redbag.png">
+    </div>
+    <div class="font-page redbag-page">
+        <div class="title bold">“<%=name%>”</div>
+        <div class="money bold">50元</div>
+        <ul class="list">
+            <li>领取方式：</li>
+            <li>进入dr.wine 首页顶部活动专区，输入“<%=name%>”的邀请码领取。</li>
+            <li>同时“牛魔王爱红酒美女”也将获取10元现金券奖励！</li>
+        </ul>
+        <div class="my-code bold">邀请码：<%=code%></div>
+        <div class="common-btn red">进入dr.wine领取</div>
+        <div class="last">*最终解释权归dr.wine所有。</div>
+    </div>
+</div>
+</script>
+<script src="js/zepto.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/wine.js"></script>
+<script>
+$(function (){
+    var code = wine.getUrlParam("code") || "";
+    var name = decodeURIComponent(wine.getUrlParam("name")) || "";
+    var data = {
+        code:code,
+        name:name
+    }
+    ;
+    var template = $("#tpl").html();
+    var html = _.template(template);
+    $("body").html(html(data));
+})
+</script>
 </html>

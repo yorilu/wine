@@ -15,7 +15,7 @@
 
 <script type="text/template" id="tpl">
 <div class="page">
-    <div class="main-page-bg <%if(typeof friend != "undefined"){%>friend-page<%}%> bg-page">
+    <div class="main-page-bg <%if(typeof friend != "undefined" && friend !=""){%>friend-page<%}%> bg-page">
         <img width="100%" src="pic/bg1.png">
     </div>
     <div class="main-page font-page">
@@ -68,7 +68,7 @@
                     活动日期截止至6月30日。
                 </li>
             </ul>
-            <%if(typeof friend != "undefined"){%>
+            <%if(typeof friend != "undefined" && friend != ""){%>
                 <div class="title friend-title">邀请成功的好友：</div>
                 <ul class="friend-list">
                     <%
@@ -92,11 +92,12 @@
 $(function (){
     var max = 120;// 满120就可以获奖
     var url = "";
-    var auth = wine.getUrlParam("auth");
-    var name = wine.getUrlParam("name");
+    var auth = wine.getUrlParam("auth") || localStorage['auth'];
+    var urlname = wine.getUrlParam("name") ||localStorage['urlname'];
     
     localStorage['auth'] = auth;
-    
+    localStorage['urlname'] = urlname; 
+   
     var that = this;
     $.ajax({
         url:wine.url,
@@ -105,7 +106,7 @@ $(function (){
             action: "getInfo",
             dataType: "json",
             auth: auth,
-            name: name
+            name: urlname
         },
         success: function (info){
             if(info.rc == 0){
@@ -124,6 +125,8 @@ $(function (){
                     
                     f = f.substring(0,f.length-1);
                     localStorage["friend"] = f;
+                }else{
+                    localStorage["friend"] = "";
                 }
                 
                 if(data.score >= max){
@@ -148,7 +151,7 @@ $(function (){
             var invCode = $inv.val();
             
             if($inv.val().length!=6){
-                alert("请输入6位邀请码！");
+                wine.showDialog("","请输入6位邀请码！","确认");
             }else{
                 $.ajax({
                     url:wine.url,
@@ -165,7 +168,7 @@ $(function (){
                             localStorage["score"] = 50;
                             localStorage["fname"] = info.data.fname;
                         }else{
-                            alert(info.rmsg);
+                             wine.showDialog("",info.rmsg,"确认");
                         }
                     },
                     error: function(info){

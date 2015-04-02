@@ -26,7 +26,6 @@ html,body{
 .hidden{
 	display:none;
 }
-
 body {
 	min-width: 320px;
 	font: normal 14px/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei;
@@ -61,18 +60,67 @@ input.place-black::-webkit-input-placeholder{
 	min-width:320px;
 }
 
+.dialog{
+    position:fixed;
+    background-color:#FFF;
+    left:50%;
+    top:50%;
+    z-index:1000;
+    border-radius:10px;
+    text-align:center;
+    font-size: 18px;
+    margin-top:-75px;
+}
+
+.dialog .d-title{
+    margin-top: 16px;
+    color:#5e1818;
+}
+
+.dialog .d-content{
+    margin-top: 12px;
+    margin-bottom: 18px;
+    color:#5e1818;
+}
+
+.dialog .confirm{
+    border-top: 1px solid #DDD;
+    height: 50px;
+    line-height: 50px;
+}
+
+.mask{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    background-color:#000;
+    opacity:0.5;
+    z-index:100;
+}
+
+
 @media screen and (min-width: 320px) {	
 	.bg-page,.font-page,.page{
 		width:320px;
 	}
+    
+    .dialog{
+        width:280px;
+        margin-left:-140px;
+    }
 }
 
 @media screen and (min-width: 640px) {	
 	.bg-page,.font-page,.page{
 		width:640px;
 	}
+    
+    .dialog{
+        width:360px;
+        margin-left:-180px;
+    }
 }
-
 /*test-page*/
 .test-page{
 	width:100%;

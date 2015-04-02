@@ -52,6 +52,8 @@ class BO {
                 $ret["friend"] = $friend;
             }
         };
+        
+        unset($ret["id"]);
         return $ret;
     }
 	

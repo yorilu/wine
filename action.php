@@ -5,12 +5,12 @@ include_once "keys.php";
 
 $action = $_POST["action"];
 $auth = $_POST["auth"];
-$name = $_POST["name"];
-$invCode = $_POST["invcode"];
+$name = clear_xss($_POST["name"]);
+$invCode = clear_xss($_POST["invcode"]);
 
-$address = $_POST["address"];
-$contact = $_POST["contact"];
-$phone = $_POST["phone"];
+$address = clear_xss($_POST["address"]);
+$contact = clear_xss($_POST["contact"]);
+$phone = clear_xss($_POST["phone"]);
 
 
 
@@ -101,6 +101,14 @@ function getUidFormAuth($str,$keys){
     }
 }
 
+function clear_xss($str){
+    if (isset($str) && !empty($str)){
+       $str = strip_tags($str);   //过滤html标签
+       $str = htmlspecialchars($str);   //将字符内容转化为html实体
+       $str = addslashes($str);
+       return $str;
+    }
+}
 
 
 
