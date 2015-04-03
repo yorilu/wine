@@ -7,13 +7,12 @@ $action = $_POST["action"];
 $auth = $_POST["auth"];
 $name = clear_xss($_POST["name"]);
 $invCode = clear_xss($_POST["invcode"]);
-
 $address = clear_xss($_POST["address"]);
 $contact = clear_xss($_POST["contact"]);
 $phone = clear_xss($_POST["phone"]);
 
-
-
+$appid = "wx1a608431d172695b";
+$secret = "0f6e0f0d13f6c31b28a2b7a72963fe15";
 
 header('Content-Type: application/json');
 
@@ -60,21 +59,46 @@ switch($action){
 
 $BO->close();
 
+/*
+$token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
+
+get_token($token_url);
+function get_token($token_url){
+	$url='$token_url';  
+	$html = send_post($token_url);  
+	echo($html);
+}
+
+function send_post($url, $post_data) {
+    $postdata = http_build_query($post_data);
+    $options = array(
+        'http' => array(
+            'method' => 'GET',
+            'header' => 'Content-type:application/x-www-form-urlencoded',
+            'content' => $postdata,
+            'timeout' => 15 * 60
+        )
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    return $result;
+}
+*/
 
 function suc_msg($data = "",$rmsg = ""){
-    $arr = [
+    $arr = array(
         "rc" => "0",
         "rmsg" => $rmsg,
         "data" => $data
-    ];
+    );
     echo(json_encode($arr));
 }
 
 function error_msg($rmsg = ""){
-    $arr = [
+    $arr = array(
         "rc" => "1",
         "rmsg" => $rmsg
-    ];
+    );
     echo(json_encode($arr));
 }
 

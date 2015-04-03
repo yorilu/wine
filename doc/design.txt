@@ -37,13 +37,9 @@ insert into user values(0,'drwine000088889999','94d6eq','呵呵a',0,0);
 insert into user values(0,'drwine000099999999','ds65de','呵呵b',0,0);
 insert into user values(0,'drwine000011112222','d1g1gw','呵呵c',0,0);
 
+insert into user values(0,'drwine999999999999','drwine','drwine',0,0);
+
 insert into friend values(0,0);
 
 SELECT user.name FROM friend left join user on friend.fid = user.id where friend.id = 2
 
-
-TODO
-微信分享/微博分享
-dialog UI
-还有个页面展示
-防sql注入

@@ -76,11 +76,10 @@ class BO {
 		   $score = (int)$otherUser["score"];
 		   $this->dao->updateScore($otherUser["uid"],$score+10);
            $this->dao->addFriend($otherUser["id"],$userInfo["id"]);
-		   $ret = [
+		   $ret = array(
 		       "fname"=>$otherUser["name"],
 			   "code"=>$userInfo["code"]
-			   ];
-			//TODO add to friend 
+			   );
 		   return $ret;
 	   }
 	   

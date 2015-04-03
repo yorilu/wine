@@ -1,6 +1,5 @@
 <?php
  /*
- 用法：
  Security::encrypt($str,$key);
  Security::decrypt($str,$key);
  */
