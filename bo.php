@@ -15,7 +15,7 @@ class BO {
             $wine = (int)$userInfo["wine"];
             $id = (int)$userInfo["id"];
             if($score>=120){
-                $this->dao->updateScore($uid,0);
+                $this->dao->updateScore($uid,$score-120);
                 $this->dao->updateWine($uid,$wine+1);
                 $this->dao->addAddress($id,$address,$contact,$phone);
                 return true;

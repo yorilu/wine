@@ -59,31 +59,12 @@ switch($action){
 
 $BO->close();
 
-/*
-$token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
+$url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx1a608431d172695b&secret=0f6e0f0d13f6c31b28a2b7a72963fe15';
 
-get_token($token_url);
-function get_token($token_url){
-	$url='$token_url';  
-	$html = send_post($token_url);  
-	echo($html);
+function ruequest_get($url){
+    $html = file_get_contents($url);
+    return $html;
 }
-
-function send_post($url, $post_data) {
-    $postdata = http_build_query($post_data);
-    $options = array(
-        'http' => array(
-            'method' => 'GET',
-            'header' => 'Content-type:application/x-www-form-urlencoded',
-            'content' => $postdata,
-            'timeout' => 15 * 60
-        )
-    );
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    return $result;
-}
-*/
 
 function suc_msg($data = "",$rmsg = ""){
     $arr = array(

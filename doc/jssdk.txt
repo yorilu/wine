@@ -10,6 +10,12 @@ wx.config({
     jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
 
+JSSDK API:http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+签名校验：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
 
-拿token
+拿token:
 https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx1a608431d172695b&secret=0f6e0f0d13f6c31b28a2b7a72963fe15
+拿ticket:
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=IyL8i6i5fh-sZCurAsEQw2EJ4RwX4LE0rkqmmjxg0YPo5bXBj0PS5akYl5ur_-0BxAySH6XjEvxRDS8dgMtn_sin8T2c8rXfuP8n32XJ5mw&type=jsapi
+
+jsapi_ticket=IyL8i6i5fh-sZCurAsEQw2EJ4RwX4LE0rkqmmjxg0YPo5bXBj0PS5akYl5ur_-0BxAySH6XjEvxRDS8dgMtn_sin8T2c8rXfuP8n32XJ5mw&noncestr=HIhiHJIGIFUgiGIGHItimestamp=1428387967761&url=http://mp.weixin.qq.com

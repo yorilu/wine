@@ -15,15 +15,18 @@ input.place-black::-webkit-input-placeholder{color:#000}
 .dialog .d-content{margin-top:12px;margin-bottom:18px;color:#5e1818}
 .dialog .confirm{border-top:1px solid #DDD;height:50px;line-height:50px}
 .mask{width:100%;height:100%;position:absolute;top:0;background-color:#000;opacity:.5;z-index:100}
-@media screen and (min-width:320px){.bg-page,.font-page,.page{width:320px}
+@media screen and (min-width:320px){
 .dialog{width:280px;margin-left:-140px}
 }
-@media screen and (min-width:640px){.bg-page,.font-page,.page{width:640px}
+@media screen and (min-width:640px){
 .dialog{width:360px;margin-left:-180px}
 }
 .test-page{width:100%;height:100%;background-color:#FFF;padding:30px}
 .test-page .test-btn{border:1px solid #000;margin-bottom:20px}
-.main-page-bg{background:#f64b35;height:820px}
+.main-page-bg.h1{min-height:720px;}
+.main-page-bg.h2{height:840px;}
+.main-page-bg.h3{height:720px;}
+.main-page-bg{background:#f64b35;overflow:hidden;min-height:720px;}
 .bg-page{position:absolute}
 .font-page{position:absolute;z-index:1}
 .main-page-bg.friend-page{min-height:1000px}
