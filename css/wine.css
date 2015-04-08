@@ -61,16 +61,27 @@ input.place-black::-webkit-input-placeholder{color:#000}
 .info{color:#787471}
 .info .list li{list-style-type:disc;margin-left:18px}
 .info .last{margin-top:10px;text-align:right}
+.share-page{
+    background-image:url('../pic/share.png');
+    background-repeat:no-repeat;
+    background-color:#fdedd4;
+}
 .share-page-bg{background-color:#fdedd4;min-height:660px}
 .share-page .content{margin-top:62%;text-align:center}
 .share-page .money{font-size:28px;color:#F00;font-weight:bold}
 .share-page .line{font-size:20px;color:#6c6964;font-weight:bold}
 .share-page .my-code{font-size:18px;margin:15px 0;color:#4d1704;font-weight:bold}
 .common-btn{background-color:#fe9001;text-align:center;font-size:22px;line-height:56px;color:#FFF;width:70%;margin:0 auto;height:7%;min-height:55px;border-radius:30px;text-align:center}
+.common-btn.gray{
+    background-color:#CCC;
+}
 .share-page .friend{font-weight:bold;color:#000}
 .share-page .info{background-color:#fef3e2;border:1px solid #fde3bb}
 .share-page .wallet-div{text-align:center;margin-top:30%;height:20%}
 .share-page bold{color:#000}
+.share-page .common-btn.gray{
+    margin-top:3%;
+}
 .award-page-bg{background-color:#fdecd2}
 .award-page{text-align:center}
 .award-page .content{margin-top:60%}
@@ -142,4 +153,20 @@ input.place-black::-webkit-input-placeholder{color:#000}
 @media screen and (min-width:640px){.address-page .line .input{width:75%}
 .address-page .radius{width:100px;height:100px;bottom:-65px}
 .common-btn{height:71px;line-height:71px}
+}
+
+.toast-share{
+    width:100%;
+    height:100%;
+    background-image:url('../pic/toastshare.png');
+    background-size: 80% auto;
+    background-position-y: 50px;
+    background-position-x: 40%;
+    background-repeat:no-repeat;
+    position:absolute;
+    top:0;
+    z-index:1000;
+    background-color: #000;
+    opacity: 0.8;
+    min-width:320px;
 }

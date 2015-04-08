@@ -1,5 +1,5 @@
 //var SERVER_IP = "121.40.92.70";
-var SERVER_IP = "localhost";
+var SERVER_IP = "172.16.150.128";
 var DOWNLOAD_URL = "http://download.com";
 var ACTION_URL = "http://"+SERVER_IP+"/wine/action.php";
 
@@ -62,6 +62,80 @@ $(function (){
         hideDialog: function (){
             $(".J_Dialog").hide();
             $(".J_Mask").hide();
+        },
+        showShareToast: function (){
+            if(localStorage['hasToasted'] == 1){
+                return;
+            }
+            var $toast = $(".J_ToastShare");
+            if(!$toast[0]){
+                $toast = $("<div class='toast-share J_ToastShare'></div>");
+                $("body").append($toast);
+            };
+            localStorage['hasToasted'] = 1;
+            $toast.css({
+                height:$('body')[0].scrollHeight
+            })
+            $toast.unbind().on('click',function (){
+                $toast.hide();
+            })
+        },
+        getWxConfig: function (){
+            var that= this;
+            var auth = localStorage["auth"];
+            var urlname = localStorage["urlname"];
+            var shareurl =location.href.split("?")[0];
+            $.ajax({
+                url:wine.url,
+                type:"post",
+                data: {
+                    action: "getWxConfig",
+                    dataType: "json",
+                    auth: auth,
+                    name: urlname,
+                    shareurl:shareurl
+                },
+                success: function (info){
+                    if(info.rc == 0){
+                        var data = info.data;
+                        debugger;
+                        wx.config({
+                            debug: true, 
+                            appId: data.appid,
+                            timestamp: data.timestamp,
+                            nonceStr: data.nonceStr, 
+                            signature: data.signature,
+                            jsApiList: [
+                            "onMenuShareTimeline",
+                            "onMenuShareAppMessage",
+                            "onMenuShareQQ",
+                            "onMenuShareWeibo"]
+                        });
+                        that.bindEvent();
+                    }
+                },
+                error: function(info){
+                    debugger;
+                }
+            });
+        },
+        bindEvent: function (){
+            wx.onMenuShareTimeline({
+                title: 'aaa', // 分享标题
+                link: 'www.baidu.com', // 分享链接
+                imgUrl: 'dddd', // 分享图标
+                success: function (info) { 
+                    alert(1);
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function (info) { 
+                    alert(2);
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            $(".J_ShareBtn").on('click', function (){
+                wx.showOptionMenu();
+            })
         }
-    };
+    };    
 })

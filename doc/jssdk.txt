@@ -19,3 +19,12 @@ https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx1a6
 https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=IyL8i6i5fh-sZCurAsEQw2EJ4RwX4LE0rkqmmjxg0YPo5bXBj0PS5akYl5ur_-0BxAySH6XjEvxRDS8dgMtn_sin8T2c8rXfuP8n32XJ5mw&type=jsapi
 
 jsapi_ticket=IyL8i6i5fh-sZCurAsEQw2EJ4RwX4LE0rkqmmjxg0YPo5bXBj0PS5akYl5ur_-0BxAySH6XjEvxRDS8dgMtn_sin8T2c8rXfuP8n32XJ5mw&noncestr=HIhiHJIGIFUgiGIGHItimestamp=1428387967761&url=http://mp.weixin.qq.com
+
+
+"jsapi_ticket=bxLdikRXVbTPdHSM05e5u98vF2YEIS3gElFkDZEKyaCtkhEhxmRI3RmYAPb3CUfNREswRDtbOF6gMS3t1BtvOA&noncestr=g48rhp&timestamp=1428480775&url=http://172.16.150.128/wine/index.html
+
+351051650a2ac1226dfcf89c04fe9fc6bce5e9b0
+
+
+jsapi_ticket=bxLdikRXVbTPdHSM05e5u98vF2YEIS3gElFkDZEKyaCtkhEhxmRI3RmYAPb3CUfNREswRDtbOF6gMS3t1BtvOA&noncestr=fuvlbh&timestamp=1428480955&url=http://172.16.150.128/wine/index.html
+sha1:e5f6f3aaa2ae8ad88b492cb74b898c8e17687506

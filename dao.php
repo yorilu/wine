@@ -47,8 +47,18 @@ class DAO {
     
     public function addFriend($id,$fid){
         $ret = $this->con->query("insert into friend values(".$id.",".$fid.")");
-        
     }
+    
+    public function getTicket(){
+        $ret = $this->con->get_row("select token,ticket,time from wxsdk");
+        return $ret;
+    }
+    
+    public function updateTokenInfo($token,$ticket,$time){
+        $sql = "update wxsdk set token = '".$token."',ticket='".$ticket."',time='".$time."' where id = 1";
+		$ret = $this->con->query($sql);
+        return $ret;
+	}
         
     public function ifCodeExist($code, $uid = "") {
         $list = $this->con->get_row("select 1 from user where code='".$code."' and uid !='".$uid."'");
