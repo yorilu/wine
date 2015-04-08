@@ -1,5 +1,5 @@
 //var SERVER_IP = "121.40.92.70";
-var SERVER_IP = "192.168.1.12";
+var SERVER_IP = "localhost";
 var DOWNLOAD_URL = "http://download.com";
 var ACTION_URL = "http://"+SERVER_IP+"/wine/action.php";
 

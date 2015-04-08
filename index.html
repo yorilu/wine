@@ -18,9 +18,14 @@
 <%  
 var mainPageClass="";
 if(typeof friend != "undefined" && friend != ""){
-    mainPageClass = "h3";
+    if(wine == 0){
+        mainPageClass = "h3";
+    }else{
+        mainPageClass = "h4";
+    }
+    
 }else{
-    if(score == 0 && wine == 0){
+    if(wine == 0){
         mainPageClass = "h1";
     }else{
         mainPageClass = "h2";
@@ -29,10 +34,8 @@ if(typeof friend != "undefined" && friend != ""){
  
  %>
 <div class="page">
-    <div class="main-page-bg <%=mainPageClass%> bg-page">
-        <img width="100%" src="pic/bg1.png">
-    </div>
-    <div class="main-page font-page">
+  
+    <div class="main-page <%=mainPageClass%> font-page">
         <div class="name">
             <%=name%>
         </div>
