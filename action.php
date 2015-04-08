@@ -10,9 +10,7 @@ $invCode = clear_xss($_POST["invcode"]);
 $address = clear_xss($_POST["address"]);
 $contact = clear_xss($_POST["contact"]);
 $phone = clear_xss($_POST["phone"]);
-
-$appid = "wx1a608431d172695b";
-$secret = "0f6e0f0d13f6c31b28a2b7a72963fe15";
+$shareurl = $_POST["shareurl"];
 
 header('Content-Type: application/json');
 
@@ -55,16 +53,17 @@ switch($action){
 			error_msg("领取奖品失败！");
 		};
         break;
+     case 'getWxConfig':
+        $ret = $BO->getWxConfig($shareurl);
+        if(!empty($ret)){
+			suc_msg($ret);
+		}else{
+			error_msg("获取ticket失败");
+		};
+        break;
 }
 
 $BO->close();
-
-$url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx1a608431d172695b&secret=0f6e0f0d13f6c31b28a2b7a72963fe15';
-
-function ruequest_get($url){
-    $html = file_get_contents($url);
-    return $html;
-}
 
 function suc_msg($data = "",$rmsg = ""){
     $arr = array(

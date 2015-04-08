@@ -34,13 +34,22 @@ CREATE TABLE IF NOT EXISTS address (
 );
 
 CREATE TABLE IF NOT EXISTS wxsdk (
+ id int(8),
  token VARCHAR(200),
  ticket VARCHAR(200),
+ time VARCHAR(40)
 );
+
 ！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+兜兵晒方象
 insert into user values(0,'drwine999999999999','drwine','drwine',50,0);
+insert into wxsdk values(1,'0','0','0');
+----------------------------------------------------------------
 
 insert into user values(0,'drwine000088889999','94d6eq','最最a',0,0);
 insert into user values(0,'drwine000099999999','ds65de','最最b',0,0);
 insert into user values(0,'drwine000011112222','d1g1gw','最最c',0,0);
+
+
+
 
