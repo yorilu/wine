@@ -53,7 +53,8 @@ $(function (){
     $(".J_Back").on('click', function (){
         location.href="/wine/index.html?auth="+localStorage["auth"]+"&name="+localStorage["urlname"];
     })
-    
+	
+    wine.bindEvent();
     wine.getWxConfig();
 })
 </script>

@@ -1,6 +1,14 @@
 //var SERVER_IP = "121.40.92.70";
+//start 替换
 var SERVER_IP = "www.drwine.cn";
-var DOWNLOAD_URL = "http://download.com";
+var DOWNLOAD_URL = "http://a.app.qq.com/o/simple.jsp?pkgname=com.drwine.android";
+var SHARE_TITLE = "送你红包，请你喝酒";
+var SHARE_DESC = "dr.wine 红包送礼";
+var SHARE_IMG = "http://"+SERVER_IP+"/wine/pic/bag.jpg";
+//end
+
+
+
 var ACTION_URL = "http://"+SERVER_IP+"/wine/action.php";
 var REDBAG_URL = "http://"+SERVER_IP+"/wine/redbag.html";
 
@@ -20,6 +28,11 @@ $(function (){
             var r = window.location.search.substr(1).match(reg); 
             if (r!=null) return r[2]; return null; 
         },
+		bindEvent: function (){
+			$(".J_ShareBtn").on('click', function (){
+				wine.showShareToast();
+			})
+		},
         getInfo: function (){
             var obj = {};
             for(var i in localStorage){
@@ -65,18 +78,16 @@ $(function (){
             $(".J_Mask").hide();
         },
         showShareToast: function (){
-            if(localStorage['hasToasted'] == 1){
-                return;
-            }
             var $toast = $(".J_ToastShare");
             if(!$toast[0]){
                 $toast = $("<div class='toast-share J_ToastShare'></div>");
                 $("body").append($toast);
             };
-            localStorage['hasToasted'] = 1;
+
             $toast.css({
                 height:$('body')[0].scrollHeight
             })
+			$toast.show();
             $toast.unbind().on('click',function (){
                 $toast.hide();
             })
@@ -116,76 +127,74 @@ $(function (){
 							"showMenuItems"
 							]
                         });
-                        that.bindEvent();
                     }
                 },
                 error: function(info){
                     debugger;
                 }
             });
-        },
-        bindEvent: function (){
-            $(".J_ShareBtn").on('click', function (){
-                wx.showOptionMenu();
-            })
-            
-			var shareTitle = "title";
-			var shareDesc = "desc";
-			var shareLink = REDBAG_URL+'?name='+localStorage["name"]+'&code='+localStorage["code"];
-			var shareImg = "";
-			
-            wx.onMenuShareTimeline({
-                title: shareTitle,
-                link: shareLink,
-                imgUrl: shareImg, 
-                success: function (info) { 
-                },
-                cancel: function (info) { 
-                   
-                }
-            });
-            
-            wx.onMenuShareAppMessage({
-                title: shareTitle, 
-                desc: shareDesc, 
-                link: shareLink, 
-                imgUrl: shareImg, 
-                type: '', // 分享类型,music、video或link，不填默认为link
-                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                success: function () { 
-                    
-                },
-                cancel: function () { 
-                   
-                }
-            });
-            
-            wx.onMenuShareQQ({
-                title: shareTitle, 
-                desc: shareDesc, 
-                link: shareLink, 
-                imgUrl: shareImg, 
-                success: function () { 
-                  
-                },
-                cancel: function () { 
-                   
-                }
-            });
-            
-            wx.onMenuShareWeibo({
-                title: shareTitle, 
-                desc: shareDesc, 
-                link: shareLink, 
-                imgUrl: shareImg, 
-                success: function () { 
-                  
-                },
-                cancel: function () { 
-                    
-                }
-            });
-            
         }
     };    
+	
+	if(wx){
+		wx.ready(function(){
+			var shareTitle = SHARE_TITLE;
+			var shareDesc = SHARE_DESC;
+			var shareImg = SHARE_IMG;
+			
+			var shareLink = REDBAG_URL+'?name='+localStorage["name"]+'&code='+localStorage["code"];
+			
+			wx.onMenuShareTimeline({
+				title: shareTitle,
+				link: shareLink,
+				imgUrl: shareImg, 
+				success: function (info) { 
+				},
+				cancel: function (info) { 
+				   
+				}
+			});
+			
+			wx.onMenuShareAppMessage({
+				title: shareTitle, 
+				desc: shareDesc, 
+				link: shareLink, 
+				imgUrl: shareImg, 
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () { 
+					
+				},
+				cancel: function () { 
+				   
+				}
+			});
+			
+			wx.onMenuShareQQ({
+				title: shareTitle, 
+				desc: shareDesc, 
+				link: shareLink, 
+				imgUrl: shareImg, 
+				success: function () { 
+				  
+				},
+				cancel: function () { 
+				   
+				}
+			});
+			
+			wx.onMenuShareWeibo({
+				title: shareTitle, 
+				desc: shareDesc, 
+				link: shareLink, 
+				imgUrl: shareImg, 
+				success: function () { 
+				  
+				},
+				cancel: function () { 
+					
+				}
+			});
+		});
+	}
 })

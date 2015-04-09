@@ -114,9 +114,9 @@ class BO {
             "appid" => $WINE_CONFIG["APPID"],
             "timestamp" => $time,
             "nonceStr" => $noncestr,
-            "signature" => $signature,
-			"test_str" =>$str,
-			"test_sign" => $signature
+            "signature" => $signature
+			//"test_str" =>$str,
+			//"test_sign" => $signature
         );
         return $info;
     }
