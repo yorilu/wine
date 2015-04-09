@@ -147,7 +147,7 @@ $(function (){
                 }
                 
                 if(data.score >= max){
-                    location.href = "/wine/award.html";
+                    location.href = "/wine7_1/award.html";
                 }else{
                     var data = wine.getInfo();
                     var template = $("#tpl").html();
@@ -194,7 +194,7 @@ $(function (){
                     },
                     success: function (info){
                         if(info.rc == 0){
-                            location.href="/wine/share.html";
+                            location.href="/wine7_1/share.html";
                             localStorage["score"] = 50;
                             localStorage["fname"] = info.data.fname;
                         }else{

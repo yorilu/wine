@@ -1,16 +1,18 @@
 //var SERVER_IP = "121.40.92.70";
 //start 替换
-var SERVER_IP = "www.drwine.cn";
+var SERVER_IP = "m.drwine.cn";
+var PROJECT_NAME = "wine7_1";
 var DOWNLOAD_URL = "http://a.app.qq.com/o/simple.jsp?pkgname=com.drwine.android";
 var SHARE_TITLE = "送你红包，请你喝酒";
 var SHARE_DESC = "dr.wine 红包送礼";
-var SHARE_IMG = "http://"+SERVER_IP+"/wine/pic/bag.jpg";
+var SHARE_IMG = "http://"+SERVER_IP+"/"+PROJECT_NAME+"/pic/bag.jpg";
 //end
+window.PROJECT_NAME = PROJECT_NAME;
 
 
 
-var ACTION_URL = "http://"+SERVER_IP+"/wine/action.php";
-var REDBAG_URL = "http://"+SERVER_IP+"/wine/redbag.html";
+var ACTION_URL = "http://"+SERVER_IP+"/"+PROJECT_NAME+"/action.php";
+var REDBAG_URL = "http://"+SERVER_IP+"/"+PROJECT_NAME+"/redbag.html";
 
 $(function (){
 	var dialog ='<div class="dialog J_Dialog hidden">'+
@@ -83,7 +85,7 @@ $(function (){
                 $toast = $("<div class='toast-share J_ToastShare'></div>");
                 $("body").append($toast);
             };
-
+			$("body").scrollTop(0);
             $toast.css({
                 height:$('body')[0].scrollHeight
             })
@@ -136,7 +138,7 @@ $(function (){
         }
     };    
 	
-	if(wx){
+	if(typeof wx != 'undefined'){
 		wx.ready(function(){
 			var shareTitle = SHARE_TITLE;
 			var shareDesc = SHARE_DESC;

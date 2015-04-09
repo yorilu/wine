@@ -4,9 +4,9 @@ include_once "ezsql/ez_sql_mysql.php";
 
 class DAO {
     private $con = null;
-    //$this->con = new ezSQL_mysql('root','d7CD2E8d1522!','wine7_1','127.0.0.1');
+	//$this->con = new ezSQL_mysql('root','root','wine','127.0.0.1');
     function __construct() {
-        $this->con = new ezSQL_mysql('root','root','wine','127.0.0.1');
+        $this->con = new ezSQL_mysql('root','root','wine','127.0.0.1','utf-8');
     }
     
     public function getUserInfoByUid($uid){
