@@ -1,0 +1,74 @@
+初始化表
+————————————————————————————
+CREATE TABLE IF NOT EXISTS user (
+ id int(8) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ uid VARCHAR(18) UNIQUE KEY NOT NULL ,
+ code VARCHAR(6) UNIQUE KEY NOT NULL, 
+ name VARCHAR(20) NOT NULL ,
+ score int(4) DEFAULT 0,
+ wine int(4) DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS friend (
+ id int(8) NOT NULL,
+ fid int(8) NOT NULL 
+);
+
+CREATE TABLE IF NOT EXISTS address (
+ id int(8) NOT NULL,
+ address VARCHAR(80),
+ contact VARCHAR(40),
+ phone VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS wxsdk (
+ id int(8),
+ token VARCHAR(200),
+ ticket VARCHAR(200),
+ time VARCHAR(40)
+);
+
+————————————————————————————
+初始化数据
+insert into user values(0,'drwine999999999999','drwine','drwine',50,0);
+insert into wxsdk values(1,'0','0','0');
+————————————————————————————
+需要修改的js变量
+js/wine.js
+//地址
+var SERVER_IP = "m.drwine.cn";
+//项目名
+var PROJECT_NAME = "wine7_1";
+//app 下载地址
+var DOWNLOAD_URL = "http://a.app.qq.com/o/simple.jsp?pkgname=com.drwine.android";
+//微信分享 title
+var SHARE_TITLE = "送你红包，请你喝酒";
+//微信分享 desc
+var SHARE_DESC = "dr.wine 红包送礼";
+//微信分享 icon
+var SHARE_IMG = "http://"+SERVER_IP+"/"+PROJECT_NAME+"/pic/bag.jpg";
+————————————————————————————
+数据库连接
+dao.php
+$this->con = new ezSQL_mysql('root','root','wine','127.0.0.1','utf-8');
+————————————————————————————
+秘钥
+keys.php
+$PRIVATE_KEYS = array(
+    0 => "GhGjLoUmN1B2B3V1H3R1U3I3",
+    1 => "dsaddLOhkiHKhkHkhkhkdhsO",
+    2 => "NIOUh890GH890bgKnhibgUI8",
+    3 => "FTFyuV787799780GHUVGFfyy",
+    4 => "N56789790GIBGIGFYDF78G78",
+);
+————————————————————————————
+加密方式
+drwine000000000000(长度18位，12位数字)
+aes 128位 无偏移 pkcs5补码 最后base64.
+加密出来如下字符串
+PpxrrUokifij6apAssrLLgvlnmvYmFpcNnkPD9pBf1Q=
+在第五位放入 秘钥索引如
+Ppxrr1Uokifij6apAssrLLgvlnmvYmFpcNnkPD9pBf1Q=
+————————————————————————————
+
+
